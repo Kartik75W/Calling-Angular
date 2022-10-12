@@ -1,0 +1,106 @@
+<div id="app-container" ng-app="contactsApp" ng-class="{ 'modal' : formShow }">
+  <nav>
+    <ul>
+      <li>All</li>
+      <li>Contacts<span class="selected"></span></li>
+      <li>Fans</li>
+      <li>Teams</li>
+    </ul>
+  </nav>
+  <div style="clear:both"></div>
+  <div class="panel">
+    <form class="form-search">
+      <input
+        class="form-input"
+        placeholder="Search for contact by contact number..."
+        [(ngModel)]="searchText"
+        type="text"
+        name="search"
+      />
+    </form>
+  </div>
+  <ul
+    class="contact-list"
+    *ngFor="let item of showNumVal | filter:searchText ; let i = index"
+  >
+    <li>
+      <img
+        src="http://dallasposttrib.com/wordpress/wp-content/uploads/2015/01/Dallas-Mavericks-Logo.gif"
+        class="center"
+      />
+      <div class="contact-info">
+        <span>{{item.name | titlecase}}</span>
+        <p class="heading--name">{{item.number}}</p>
+        <span *ngIf="item.currentTime?.length > 0"
+          >Call Duration : {{item.currentTime[item.currentTime?.length - 1] |
+          formatTime}}</span
+        >
+      </div>
+      <a (click)="goToPage('outgoingcall',item.number,item.name); "
+        ><i class="fa fa-phone fa-2x text-pink"></i
+      ></a>
+    </li>
+  </ul>
+  <div class="add">
+    <button href="#" type="button" (click)="open(content)" class="float">
+      <i class="fa fa-plus my-float"></i>
+    </button>
+  </div>
+</div>
+
+
+
+<!-- model  -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">New Contact</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addingNumber" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Number</label>
+        <div class="input-group">
+          <input
+            (keypress)="onlyNumberValidation($event)"
+            maxlength="10"
+            required
+            id="number"
+            formControlName="number"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="firstname">Name</label>
+        <div class="input-group">
+          <input
+            required
+            id="name"
+            formControlName="name"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class=" text-center">
+        <button
+          type="submit"
+          (click)="modal.close('Save click')"
+          class="btn btn-primary"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+    <br />
+  </div>
+</ng-template>

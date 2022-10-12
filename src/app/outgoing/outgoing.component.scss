@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+#phone {
+  background-color: black;
+  width: 413px;
+  height: 896px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  position: relative;
+}
+.main {
+  flex-grow: 1;
+  z-index: 1;
+  text-align: center;
+}
+
+.avatar-wrapper {
+  border-radius: 50%;
+  display: block;
+  box-sizing: border-box;
+  margin: 30px auto 0 auto;
+  position: relative;
+  background-image: url("https://avatars3.githubusercontent.com/u/34525547");
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-wrapper::after {
+  content: "";
+  background-color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: -1;
+  border-radius: 50%;
+  animation: 2s pulse infinite;
+}
+
+@keyframes pulse {
+  from {
+    transform: none;
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.header-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 104px;
+  background-color: #4cda64;
+  z-index: -2;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.incoming {
+  margin-top: 50px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: gray;
+}
+.name {
+  font-size: 35px;
+  font-weight: 300;
+  margin: 0 85px;
+}
+.timeDuration {
+  font-size: 16px;
+  font-weight: 300;
+  margin: 12px 158px;
+}
+a {
+  cursor: pointer;
+}
+
+.btn {
+  height: 80px;
+  line-height: 80px;
+  width: 80px;
+  font-size: 2em;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: #ff3728;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  padding: 0px 20px;
+}
+.add {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 170px;
+}
